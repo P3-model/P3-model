@@ -56,20 +56,34 @@ Our goal is to provide such a tool something like Google Maps for software syste
 
 ## FAQ
 
-jakie były inspiracje: living documentation (Cirille), architecture views & beyond (SEI), C4, interactive maps
+**What's the inspiration behind P3 Model?**
 
-dlaczego Living Documentation: zapewnienie aktualności; w drugą stronę się nie da
+Our main inspirations are:
 
-dlaczego nie C4: tylko perspektywa techniczna
+- *Living Documentation* book of Cyrille Martraire
+- *Architecture views and beyond* approach of Software Engineering Institute
+- *C4 Model* of Simone Brown
+- Interactive, layered map tools like Google Maps
 
-dlaczego nie UML: tylko perspektywa techniczna, nie nadaje się dla osób nietechnicznych, brak interaktywności
+**Why Living Documentation?**
 
-czy jest zależny od języka programowania: sam model nie, dzięki oddzieleniu metadanych i parsera od modelu, a modelu od wizualizacji
+Because in our opinion the only way to keep documentation up-to-date is to generate it from source code augmented with all required metadata.
+
+**Why not C4 Model?**
+
+Because it contains only a part of technology perspective. We believe that broader approach is needed for documentation that support design and maintenance of software systems.
+
+**Why not UML?**
+
+Because UML is a diagram notation not the model. We believe that creating views based on shared model is more flexible approach. Of course UML can be used to generate some views on top on P3 model data.
+
+**Is P3 Model dependent on any specific programming language?**
+
+No, the model itself is not dependent. Of course annotations libraries and parsers are language specific but parsers' output is not. Any visualization tool that understand P3 Model can use output of any parser.
 
 ## Contribution
 
 Join us and help building P3 Model. Let's solve the problem of outdated and useless documentation together.
-
 
 ## License
 
