@@ -85,6 +85,9 @@ No, the model itself is not dependent. Of course annotations libraries and parse
 
 Join us and help building P3 Model. Let's solve the problem of outdated and useless documentation together.
 
+To start contributing or discussing just open GH issue in this repository and write your proposition or question.
+
+
 ## License
 
 This work is licensed under a
