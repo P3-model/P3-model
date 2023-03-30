@@ -1,6 +1,6 @@
 # P3 Model
 
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 P3 Model is a tool to navigate throughout complex software systems from all important perspectives at all level of details for everyone involved in system development including nontechnical people.
 
