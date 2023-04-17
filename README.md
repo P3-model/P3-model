@@ -17,6 +17,7 @@ As Eric Evans says *software development is all design*. Good design must be bas
 **Technical concerns are not enough to design and maintain software system.** Thus we need to add date about domain model and people working on the system and all relations between elements from this three perspectives. Only such a combination of data give us accurate enough insight.
 
 **To gather all important information about software system we need some structure.** P3 Model is also an attempt to standardize main modeling, architecture and design concepts to allow gathering information in a precise form. This standardization doesn't mean reinventing the wheel but only providing some high level structure in which we can fit existing and future patterns.
+
 **Check out [P3 Meta Model](MetaModel.md)** that defines this structure and all key terms.
 
 **Source code of the software system contains a lot of information** about architecture and domain model **but not all that is needed** to understand in deeply in all aspects. Thus **we need to add metadata** about:
