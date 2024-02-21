@@ -19,16 +19,12 @@
 - *Availability Management* model that doesn't map to any organizational division in the company but provides one of the basic business capabilities needed in many business processes
 - *Risk Scoring* model that is used in company's larger financial system and is also sold a separate product for other companies
 
-## Properties
+## Attributes
 
-| Property name | Data Type | Description                                                  |
-| ------------- | --------- | ------------------------------------------------------------ |
-| Name          | string    | Name of the Model Boundary e.g. *Sales*                      |
-| Decision      | string    | Name of the design decision or link to this decision e.g. *ADR_027* |
-
-## Traits
-
-Model Boundary has no traits.
+| Attribute name | Data Type | Description                                                  |
+|----------------| --------- | ------------------------------------------------------------ |
+| Name           | string    | Name of the Model Boundary e.g. *Sales*                      |
+| Decision       | string    | Name of the design decision or link to this decision e.g. *ADR_027* |
 
 ## Relations
 
