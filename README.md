@@ -77,7 +77,7 @@ Because it contains only a part of technology perspective. We believe that broad
 
 **Why not UML?**
 
-Because UML is a diagram notation not the model. We believe that creating views based on shared model is more flexible approach. Of course UML can be used to generate some views on top on P3 model data.
+Because UML is a diagram notation, not the model. We believe that creating views based on shared model is more flexible approach. Of course UML can be used to generate some views on top on P3 model data.
 
 **Is P3 Model dependent on any specific programming language?**
 
