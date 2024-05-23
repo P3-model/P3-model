@@ -64,7 +64,7 @@ Our main inspirations are:
 
 - *Living Documentation* book of Cyrille Martraire
 - *Architecture views and beyond* approach of Software Engineering Institute
-- *C4 Model* of Simone Brown
+- *C4 Model* of Simon Brown
 - Interactive, layered map tools like Google Maps
 
 **Why Living Documentation?**
