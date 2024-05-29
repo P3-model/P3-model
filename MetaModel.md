@@ -34,7 +34,7 @@ Each perspective contains multiple Elements of different types that represents d
 
 **We intentionally avoid using popular terms like module, container or component** because they have many different meanings in IT world and their meanings from common language don't tell us what it could be in the System.
 
-Full list of Elements grouped by Perspectives you can find [here](Elements.md).
+Full list of Elements grouped by Perspectives you can find [here](Elements/Elements.md).
 
 ## Relation
 
