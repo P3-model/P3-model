@@ -8,6 +8,8 @@ These *Elements* are divided int three perspectives:
 - *Technology* - what technical solutions are used to run the system
 - *People* - how people develop, maintain and use the system
 
+![Elements.jpg](Elements.jpg)
+
 ## Domain
 
 ### Domain Building Block
