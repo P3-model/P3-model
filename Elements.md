@@ -1,5 +1,7 @@
 # P3 Model
 
+The P3 Model is designed to help you define and document the key abstractions in your system. By focusing on the most important concepts and their relationships, it helps avoid the noise and complexity that comes from documenting every detail. This selective approach ensures that your documentation remains clear, maintainable, and truly valuable for understanding the system's architecture.
+
 This document describes all P3 Model *Elements* and *Relations*.
 
 Elements are grouped into three perspectives:
@@ -10,16 +12,75 @@ Elements are grouped into three perspectives:
 
 ![Elements.png](Elements.png)
 
+## Tagging System
+
+The P3 Model includes a flexible tagging system that allows for architectural style adaptation. Unlike rigid architectural frameworks, the tagging system in P3 is completely customizable - you can define your own tags based on your project's specific needs, architectural style, or team preferences. The examples below are just common patterns, but you are free to create your own tagging scheme that best fits your context.
+
+This flexibility enables the model to align with various architectural approaches such as:
+
+* Traditional layered architecture (Entities, Services, Repositories)
+* Domain-Driven Design (Aggregates, Value Objects, Bounded Contexts)
+* Functional programming (Pure Functions, Monads, Effects)
+* Event-driven architecture (Event Handlers, Command Handlers)
+* Microservices (Service Boundaries, API Gateways)
+* Modular Monolith (Module Interfaces, Internal Modules)
+
+Tags can be used to:
+* Mark architectural roles and patterns
+* Indicate system boundaries and interfaces
+* Highlight cross-cutting concerns
+* Define module interfaces and dependencies
+* Mark entry points and public APIs
+
+This tagging capability makes the P3 Model adaptable to different architectural styles while maintaining its core structure. You can start with a minimal set of tags and evolve them as your understanding of the system grows, or adopt a comprehensive tagging scheme from the beginning if your team already has established patterns.
+
+
 ---
 
 ## Domain
 
 ### Domain Module
 
-Domain Modules group related domain concepts into cohesive logical units. They contain Domain Objects, Domain Behaviors, and possibly other Domain Modules (nested modules). Each Domain Module is clearly owned by Development Teams and Business Organizational Units. 
+Domain Modules are the primary way to organize and structure your system's domain model. They reflect the fundamental need in software development to break down complex systems into manageable, cohesive units. The P3 Model recognizes that real-world systems often exhibit multiple levels of modularity, and it allows you to capture this complexity accurately.
 
-If you are using DDD top-level modules usually correspond to Bounded Contexts, while submodules might represent Modules in DDD meaning.
+For example, in a modular monolith, you might have:
+* High-level modules representing major business capabilities or bounded contexts
+* Nested modules within these high-level modules, representing more specific business areas
+* Deep hierarchies of modules reflecting the system's internal organization
 
+At the same time, in a microservices architecture, the modularity might be much simpler:
+* Each microservice might be a single module
+* These modules are deployed independently as separate deployment units
+* The internal structure of each microservice might be represented as nested modules
+
+The P3 Model allows you to capture all these different levels of modularity simultaneously, providing a clear picture of how your system is actually organized in the minds of its architects and developers. This is crucial for maintaining a shared understanding of the system's structure and for effective communication between team members.
+
+At its core, each Domain Module groups related domain concepts into cohesive logical units. These units can contain:
+* Domain Objects that represent the data and rules of your business domain
+* Domain Behaviors that implement the operations and processes
+* Other Domain Modules, allowing for nested organization and hierarchical structure
+
+This composition of elements within modules helps maintain clear boundaries and responsibilities, while the ability to nest modules provides the flexibility needed to model complex systems. Each module should have clear ownership, typically assigned to specific Development Teams and Business Organizational Units, ensuring accountability and clear decision-making authority.
+
+To help express the architectural intent and boundaries of modules, they can be tagged (see [Tagging System](#tagging-system) section). These tags can reflect different architectural approaches and patterns:
+
+* Traditional Architecture:
+  * Layer - modules representing different architectural layers
+  * Feature Module - modules organized around specific features
+  * Internal Module - modules not exposed to other parts of the system
+
+* Domain-Driven Design:
+  * Bounded Context - modules representing distinct domain boundaries
+  * Shared Kernel - modules shared between multiple bounded contexts
+  * Anti-corruption Layer - modules that translate between different bounded contexts
+  * Open Host Service - modules that provide standardized interfaces
+
+
+
+* Functional Architecture:
+  * Effect Module - modules handling side effects
+  * Pure Module - modules containing only pure functions
+  * Side Effect Module - modules managing external interactions
 
 **Relations:**
 
@@ -33,7 +94,34 @@ If you are using DDD top-level modules usually correspond to Bounded Contexts, w
 
 ### Domain Object
 
-Domain Objects represent business data and rules. They may include or be composed of Domain Behaviors, and they use other Domain Objects. They are used by Domain Behaviors to perform operations. Domain objects can be tagged with categories matching the architecutre style in the application. E.g. you can distinguish Entities, Services and Repositories. 
+Domain Objects are the fundamental building blocks of your system's domain model. They encapsulate both data and behavior, following the core principles of object-oriented programming. These objects represent real-world concepts, business entities, or abstract ideas from your problem domain. They can be as simple as a value object holding a single piece of information, or as complex as an entity managing its own lifecycle and business rules.
+
+Domain Objects may include or be composed of Domain Behaviors, making them active participants in your system rather than just data containers. They use other Domain Objects to fulfill their responsibilities, creating a network of collaborating objects that model your business domain. These objects are used by Domain Behaviors to perform operations, but they can also contain their own business logic and validation rules.
+
+The concept of Domain Objects is deeply rooted in software development practices, where they are typically implemented as classes in object-oriented languages. They can be tagged (see [Tagging System](#tagging-system) section) to indicate their architectural roles and patterns. Common examples include:
+
+* Traditional Architecture:
+  * Entity - objects with identity and lifecycle
+  * Service - objects providing business operations
+  * Repository - objects managing persistence
+  * Data Transfer Object (DTO) - objects for data exchange
+  * Value Object - immutable objects representing concepts
+
+* Domain-Driven Design:
+  * Aggregate Root - objects ensuring consistency boundaries
+  * Entity - objects with unique identity
+  * Value Object - immutable objects with no identity
+  * Domain Service - objects for operations spanning multiple entities
+  * Repository - objects for persistence abstraction
+  * Factory - objects for complex object creation
+  * Specification - objects for complex queries
+
+* Functional Programming:
+  * Monad - objects for handling effects and computations
+  * Functor - objects that can be mapped over
+  * Effect - objects representing side effects
+  * Pure Data Structure - immutable objects with no behavior
+  * Immutable Object - objects that cannot be modified after creation
 
 **Relations:**
 
@@ -46,7 +134,35 @@ Domain Objects represent business data and rules. They may include or be compose
 
 ### Domain Behavior
 
-Domain Behaviors implement domain functionality and logic. They may depend on Domain Objects and invoke other Domain Behaviors. They expose their functionality externally, typically through APIs. In addition selected behaviors can be tagged, for example to additionaly mark them as the entry points to the system.
+Domain Behaviors are the active elements of your system that implement functionality and business logic. They represent operations, transformations, or processes that can exist independently of any specific object. This independence makes them particularly versatile and allows them to fit into various architectural styles - from pure functional programming where they are first-class citizens, through object-oriented approaches where they might be methods of objects, to service-oriented architectures where they represent business operations.
+
+Domain Behaviors may depend on Domain Objects and invoke other Domain Behaviors, creating a network of operations that implement your business processes. They expose their functionality externally, typically through APIs, making them the primary interface between different parts of your system. This exposure can be controlled through tagging (see [Tagging System](#tagging-system) section) to indicate their role in the system architecture. Common tags include:
+
+* System Architecture:
+  * Entry Point - behaviors that serve as the system's external interface
+  * Module Interface - behaviors that expose module functionality to other modules
+  * Internal Interface - behaviors used within a module's implementation
+  * Public API - behaviors exposed to external systems
+  * Event Handler - behaviors that process system events
+  * Command Handler - behaviors that execute specific commands
+
+* Traditional Architecture:
+  * Service Method - behaviors implementing business operations
+  * Controller Action - behaviors handling user requests
+  * Repository Method - behaviors managing data access
+  * Use Case - behaviors implementing specific user scenarios
+  * Command/Query - behaviors following CQRS pattern
+
+* Domain-Driven Design:
+  * Command Handler - behaviors processing domain commands
+  * Event Handler - behaviors reacting to domain events
+
+
+* Functional Programming:
+  * Pure Function - behaviors with no side effects
+  * Effect Function - behaviors with controlled side effects
+  * Higher-Order Function - behaviors that operate on other behaviors
+  * Composition Function - behaviors that combine other behaviors
 
 **Relations:**
 
@@ -59,7 +175,7 @@ Domain Behaviors implement domain functionality and logic. They may depend on Do
 
 ### Business Process
 
-Business Processes represent structured business workflows composed of domain logic. They coordinate Domain Behaviors to achieve business goals.
+Business Processes represent structured business workflows composed of sequences of Domain Behaviors, executed either manually by users or automatically by the system.
 
 **Relations:**
 
