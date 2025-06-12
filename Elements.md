@@ -56,11 +56,11 @@ In very large systems, modules can also represent **higher-level groupings** tha
 The P3 Model allows you to capture all these different levels of modularity simultaneously, providing a clear picture of how your system is actually organized in the minds of its architects and developers. This is crucial for maintaining a **shared understanding** of the system's structure and for effective communication between team members.
 
 At its core, each Domain Module groups related domain concepts into *cohesive logical units*. These units can contain:
-* **Domain Objects** that represent the data and rules of your business domain
-* **Domain Behaviors** that implement the operations and processes
+* [**Domain Objects**](#domain-object) that represent the data and rules of your business domain
+* [**Domain Behaviors**](#domain-behavior) that implement the operations and processes
 * Other Domain Modules, allowing for nested organization and hierarchical structure
 
-This composition of elements within modules helps maintain clear boundaries and responsibilities, while the ability to nest modules provides the flexibility needed to model complex systems. Each module should have **clear ownership**, typically assigned to specific Development Teams and Business Organizational Units, ensuring accountability and clear decision-making authority. In hierarchical module structures, ownership can be explicitly defined at any level, and it naturally propagates down to nested modules unless overridden at a lower level.
+This composition of elements within modules helps maintain clear boundaries and responsibilities, while the ability to nest modules provides the flexibility needed to model complex systems. Each module should have **clear ownership**, typically assigned to specific [Development Teams](#development-team) and [Business Organizational Units](#business-organizational-unit), ensuring accountability and clear decision-making authority. In hierarchical module structures, ownership can be explicitly defined at any level, and it naturally propagates down to nested modules unless overridden at a lower level.
 
 To help express the architectural intent and boundaries of modules, they can be tagged (see [Tagging System](#tagging-system) section). These tags can reflect different architectural approaches and patterns:
 
@@ -77,11 +77,11 @@ To help express the architectural intent and boundaries of modules, they can be 
 
 **Relations:**
 
-* contains Domain Object
-* contains Domain Behavior
-* contains Domain Module (nested)
-* is owned by Development Team
-* is owned by Business Organizational Unit
+* contains [Domain Object](#domain-object)
+* contains [Domain Behavior](#domain-behavior)
+* contains [Domain Module](#domain-module) (nested)
+* is owned by [Development Team](#development-team)
+* is owned by [Business Organizational Unit](#business-organizational-unit)
 
 ---
 
@@ -89,7 +89,7 @@ To help express the architectural intent and boundaries of modules, they can be 
 
 Domain Objects are the **fundamental building blocks** of your system's domain model. They encapsulate both *data and behavior*. These objects represent real-world concepts, business entities, or abstract ideas from your problem domain. They can be as simple as a value object holding a single piece of information, or as complex as an entity managing its own lifecycle and business rules.
 
-Domain Objects may include or be composed of Domain Behaviors, making them **active participants** in your system rather than just data containers. They use other Domain Objects to fulfill their responsibilities, creating a network of collaborating objects that model your business domain. These objects are used by Domain Behaviors to perform operations, but they can also contain their own business logic and validation rules.
+Domain Objects may include or be composed of [Domain Behaviors](#domain-behavior), making them **active participants** in your system rather than just data containers. They use other Domain Objects to fulfill their responsibilities, creating a network of collaborating objects that model your business domain. These objects are used by [Domain Behaviors](#domain-behavior) to perform operations, but they can also contain their own business logic and validation rules.
 
 The concept of Domain Objects is deeply rooted in software development practices, where they are typically implemented as classes in object-oriented languages. They can be tagged (see [Tagging System](#tagging-system) section) to indicate their architectural roles and patterns. Common examples include:
 
@@ -121,10 +121,10 @@ The concept of Domain Objects is deeply rooted in software development practices
 
 **Relations:**
 
-* contains Domain Behavior
-* uses Domain Object
-* is used by Domain Behavior
-* belongs to Domain Module
+* contains [Domain Behavior](#domain-behavior)
+* uses [Domain Object](#domain-object)
+* is used by [Domain Behavior](#domain-behavior)
+* belongs to [Domain Module](#domain-module)
 
 ---
 
@@ -132,11 +132,11 @@ The concept of Domain Objects is deeply rooted in software development practices
 
 Domain Behaviors are the **active elements** of your system that implement functionality and business logic. They represent operations, transformations, or processes that can exist in two ways:
 * As **independent, standalone operations** that can be invoked directly
-* As part of Domain Objects, where they implement the object's behavior and business rules
+* As part of [Domain Objects](#domain-object), where they implement the object's behavior and business rules
 
 This *dual nature* makes behaviors particularly versatile and allows them to fit into various architectural styles - from pure functional programming where they are first-class citizens, through object-oriented approaches where they might be methods of objects, to service-oriented architectures where they represent business operations.
 
-Domain Behaviors may depend on Domain Objects and invoke other Domain Behaviors, creating a network of operations that implement your business processes. They expose their functionality externally, typically through APIs, making them the **primary interface** between different parts of your system. This exposure can be controlled through tagging (see [Tagging System](#tagging-system) section) to indicate their role in the system architecture. Common tags include:
+Domain Behaviors may depend on [Domain Objects](#domain-object) and invoke other Domain Behaviors, creating a network of operations that implement your business processes. They expose their functionality externally, typically through [APIs](#api), making them the **primary interface** between different parts of your system. This exposure can be controlled through tagging (see [Tagging System](#tagging-system) section) to indicate their role in the system architecture. Common tags include:
 
 * Entry Point - behaviors that serve as the system's external interface
 * Module Interface - behaviors that expose module functionality to other modules
@@ -148,10 +148,10 @@ Domain Behaviors may depend on Domain Objects and invoke other Domain Behaviors,
 
 **Relations:**
 
-* uses Domain Object
-* invokes Domain Behavior
-* is exposed by API
-* belongs to Domain Module / Domain Object / Business Process
+* uses [Domain Object](#domain-object)
+* invokes [Domain Behavior](#domain-behavior)
+* is exposed by [API](#api)
+* belongs to [Domain Module](#domain-module) / [Domain Object](#domain-object) / [Business Process](#business-process)
 
 ---
 
@@ -161,8 +161,8 @@ Business Processes represent structured business workflows composed of sequences
 
 **Relations:**
 
-* contains Domain Behavior
-* is owned by Business Organizational Unit
+* contains [Domain Behavior](#domain-behavior)
+* is owned by [Business Organizational Unit](#business-organizational-unit)
 
 ---
 
@@ -174,8 +174,8 @@ Deployment Containers represent runtime environments (e.g., servers, VMs, Kubern
 
 **Relations:**
 
-* contains Deployment Container
-* hosts Deployable Unit
+* contains [Deployment Container](#deployment-container)
+* hosts [Deployable Unit](#deployable-unit)
 
 ---
 
@@ -185,10 +185,10 @@ Deployable Units are independently deployable software components (e.g., applica
 
 **Relations:**
 
-* is hosted by Deployment Container
-* contains Domain Object
-* contains Domain Behavior
-* provides API
+* is hosted by [Deployment Container](#deployment-container)
+* contains [Domain Object](#domain-object)
+* contains [Domain Behavior](#domain-behavior)
+* provides [API](#api)
 
 ---
 
@@ -198,8 +198,8 @@ APIs provide access to functionalities offered by Deployable Units. They enable 
 
 **Relations:**
 
-* is provided by Deployable Unit
-* invokes Domain Behavior
+* is provided by [Deployable Unit](#deployable-unit)
+* invokes [Domain Behavior](#domain-behavior)
 
 ---
 
@@ -211,8 +211,8 @@ Development Teams consist of technical roles (e.g., developers, analysts, tester
 
 **Relations:**
 
-* owns Domain Module
-* owns Deployment Container
+* owns [Domain Module](#domain-module)
+* owns [Deployment Container](#deployment-container)
 
 ---
 
@@ -222,9 +222,9 @@ Business Organizational Units represent departments or organizational entities d
 
 **Relations:**
 
-* owns Domain Module
-* owns Business Process
-* contains Business Organizational Unit
+* owns [Domain Module](#domain-module)
+* owns [Business Process](#business-process)
+* contains [Business Organizational Unit](#business-organizational-unit)
 
 ---
 
@@ -234,7 +234,7 @@ Actors are system users who interact with Domain Behaviors as part of executing 
 
 **Relations:**
 
-* uses Domain Behavior
+* uses [Domain Behavior](#domain-behavior)
 
 ---
 
